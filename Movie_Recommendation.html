@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <style>
+.container {
+  column-count:5;
+  column-gap: 30px;
+  column-width: 20px;
+  column-rule: 1px solid lightblue;
+}
+</style>
+    <meta charset="utf-8">
+    <title>Our Movie Recommender System</title>
+    {% load static %}
+  </head>
+  <body>
+    <h3>&emsp;<a href="{% url 'home' %}">Home</a>&emsp;
+      <a href="{% url 'courses' %}">Our Courses</a>&emsp;
+      <a href="{% url 'rates' %}">Course Fee</a>&emsp;
+      <a href="{% url 'contact' %}">Contact me</a>&emsp;
+      <a href="{% url 'ML_prediction' %}">Our Machine Learning Prediction</a>&emsp;
+      <a href="{% url 'Movie_Recommendation' %}">Our Movie Recommender System</a> </h3>
+
+
+    <h1>Welcome to our Movie Recommender System </h1>
+    <h2>Search your movie here and get your movies recommended which you will definitely like</h2>
+
+    <form action="{% url 'Movie_Recommendation' %}" method="post">
+    {% csrf_token %}
+    <b>{{ form }}</b>
+    <input type="submit" value="Search">
+    </form>
+  <body>
+    <p><b>{{text}} &emsp;&emsp;<a href={{Searched_poster_link}}> </a></b></p>
+    <a href={{Searched_poster_link}}>
+    <img src={{ Searched_poster }} width="150" height="200">
+    </a>
+
+
+<h3> Movies you may like! </h3>
+<div class="container">
+  {% for i in names %}
+    <p><b>{{ i }}</b></P>
+  {% endfor %}
+</div>
+
+<div class="container">
+  {% for i in link %}
+    <p><b><a href={{ i }}>Click </a></b></P>
+  {% endfor %}
+</div>
+
+<div class="container">
+  {% for i in posters %}
+    <p><img src={{ i }} width="200" height="300"></p>
+  {% endfor %}
+</div>
+
+
+
+</html>
